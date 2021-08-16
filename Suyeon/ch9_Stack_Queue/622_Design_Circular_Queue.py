@@ -9,14 +9,8 @@ class MyCircularQueue:
         if self.isFull():  # 다 찼다면
             return False
 
-        if self.rear + 1 >= self.max:  # 5번재 칸이면 다시 첫번째칸으로
-            self.rear = self.rear + 1 - self.max
-            self.circular[self.rear] = value
-
-
-        else:
-            self.rear = self.rear + 1
-            self.circular[self.rear] = value
+        self.rear = (self.rear + 1) % self.max
+        self.circular[self.rear] = value
 
         return True
 
@@ -24,13 +18,8 @@ class MyCircularQueue:
         if self.isEmpty():
             return False
 
-        if self.front + 1 >= self.max:
-            self.circular[self.front] = "empty"
-            self.front = self.front + 1 - self.max
-
-        else:
-            self.circular[self.front] = "empty"
-            self.front = self.front + 1
+        self.circular[self.front] = "empty"
+        self.front = (self.front + 1) % self.max
 
         return True
 
@@ -52,3 +41,4 @@ class MyCircularQueue:
     def isFull(self) -> bool:
         return (self.front - self.rear == 1 or self.front - self.rear == -(self.max - 1)) and self.circular[
             self.front] != 'empty'
+
