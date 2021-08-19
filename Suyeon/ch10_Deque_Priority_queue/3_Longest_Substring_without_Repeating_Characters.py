@@ -1,23 +1,26 @@
-
+import collections
 # two for loops
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         if len(s) <= 1:
             return len(s)
         max_len = 0
+        chars = collections.defaultdict(int)
 
         for i in range(len(s)):
-            state = 0   # 중복발견여부
+            chars[s[i]] = 1
             for j in range(len(s) - i - 1):
-                if s[i + j + 1] in s[i:j + i + 1]: #다음 문자가 중복이었다면
+                if chars[s[i + j + 1]] > 0:
                     max_len = max(j + 1, max_len)
-                    state = 1
+                    chars.clear()
                     break
-            if not state: # 중복문자가 끝까지 없었다면
-                max_len = max(max_len, len(s) - i)
+                else:
+                    chars[s[i+j+1]] = 1
+            if chars:  # chars가 차있다면
+                max_len = max(max_len, len(chars))
 
         return max_len
 
 
-    
+
 
