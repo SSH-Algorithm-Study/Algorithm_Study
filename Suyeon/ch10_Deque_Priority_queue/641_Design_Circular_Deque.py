@@ -1,10 +1,11 @@
-class MyCircularDeque:
-    class ListNode:
-        def __init__(self, val=None, left=None, right=None):
-            self.val = val
-            self.left = left
-            self.right = right
+class ListNode:
+    def __init__(self, val=None, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
+
+class MyCircularDeque:
     def __init__(self, k: int):
         """
         Initialize your data structure here. Set the size of the deque to be k.
@@ -20,11 +21,15 @@ class MyCircularDeque:
         if self.isFull():
             return False
 
-        if self.isEmpty():  #비여있다면
-            self.head = self.tail = self.ListNode(val=value) # head, tail이 같은 곳 가리키게
-        else: # 공간이 남았다면
-            self.head.left = self.ListNode(val=value, right=self.head) #오른쪽이 head로 new node추가
-            self.head = self.head.left # head는 new node로 이동
+        if self.isEmpty(): # 비었을 때
+            self.head = self.tail = ListNode(val=value)
+
+        else:  # 아닐 때
+            self.head.left = ListNode(val=value, right = self.head) # 새로운 노드의 오른쪽은 헤드
+            self.head = self.head.left  # 기존헤드 옮기기
+        self.head.left = self.tail
+        self.tail.right = self.head
+
 
         self.len += 1
 
@@ -38,12 +43,15 @@ class MyCircularDeque:
         if self.isFull():
             return False
 
-        if self.isEmpty():
-            self.tail = self.head = self.ListNode(val=value)
-        else:
-            self.tail.right = self.ListNode(val=value, left=self.tail)  # 왼쪽이 tail인 new node추가
-            self.tail = self.tail.right  # tail은 new node로 이동 
+        if self.isEmpty():  # 비었을 때
+            self.head = self.tail = ListNode(val=value)
 
+        else:  # 아닐 때
+            self.tail.right = ListNode(val=value, left=self.tail)  # 새로운 노드의 왼쪽은 테일
+            self.tail = self.tail.right  # 기존테일 옮기기
+
+        self.head.left = self.tail
+        self.tail.right = self.head
         self.len += 1
 
         return True
@@ -55,13 +63,13 @@ class MyCircularDeque:
         if self.isEmpty():
             return False
 
-        self.head = self.head.right
-
-        if self.head is None:  # 마지막 원소를 지웠을 때
-            self.tail = None
-
+        if self.head == self.tail:
+            self.head = self.tail = None
         else:
-            self.head.left = None
+            self.head = self.head.right
+            self.head.left = self.tail
+            self.tail.right = self.head
+
         self.len -= 1
 
         return True
@@ -73,13 +81,12 @@ class MyCircularDeque:
         if self.isEmpty():
             return False
 
-        self.tail = self.tail.left
-
-        if self.tail is None:  # 마지막 원소를 지웠을 때
-            self.head = None
-
+        if self.head == self.tail:
+            self.head = self.tail = None
         else:
-            self.tail.right = None
+            self.tail = self.tail.left
+            self.head.left = self.tail
+            self.tail.right = self.head
 
         self.len -= 1
 
