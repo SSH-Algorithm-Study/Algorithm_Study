@@ -9,13 +9,13 @@ class Solution:
 
         for i in range(len(s)):
             chars[s[i]] = 1
-            for j in range(len(s) - i - 1):
-                if chars[s[i + j + 1]] > 0:
-                    max_len = max(j + 1, max_len)
+            for j in range(len(s) - i - 1):  # 전체길이에서 i까지의 길이 빼기
+                if chars[s[i + 1 + j]] > 0: # 추가할 문자가 이미 있었다면
+                    max_len = max(j + 1, max_len)   # 거기까지 길이
                     chars.clear()
                     break
                 else:
-                    chars[s[i+j+1]] = 1
+                    chars[s[i+j+1]] = 1  # 추가할 문자가 없었다면
             if chars:  # chars가 차있다면
                 max_len = max(max_len, len(chars))
 
