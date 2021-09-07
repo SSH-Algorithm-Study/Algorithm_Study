@@ -1,22 +1,13 @@
-import collections
+class ListNode:
+
+    def __init__(self,val, left=None, right=None):
+        self.left = left
+        self.right = right
+        self.val = val
 
 class Solution:
     def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        pairs = collections.defaultdict(list)
+        num = len(tickets)
 
         for ticket in tickets:
-            pairs[ticket[0]].append(ticket[1])
-            if len(pairs[ticket[0]]) > 1 :
-                pairs[ticket[0]].sort)_
-
-        result = []
-        result.append("JFK")
-
-        while pairs[result[-1]]:
-            airport = pairs[result[-1]].pop()
-            result.append(airport)
-
-
-
-
-
+            head = ListNode
