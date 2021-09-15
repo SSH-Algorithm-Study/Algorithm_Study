@@ -27,3 +27,15 @@ class Solution:
             return root2
         else:
             return root1
+
+
+class Solution:
+    def mergeTrees(self, root1: Optional[TreeNode], root2: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root1 and root2:
+            node = TreeNode(root1.val + root2.val)
+            node.left = self.mergeTrees(root1.left, root2.left)
+            node.right = self.mergeTrees(root1.right, root2.right)
+
+            return node
+        else:
+            return root1 or root2 # 둘중하나가 null일때 null아닌값 넘겨주기
