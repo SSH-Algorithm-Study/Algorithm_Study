@@ -13,23 +13,55 @@ class Solution:
             c = 0  # 루르토드에서 까지의 최대 count수
             next_c = 0 # 넘겨줄 count
             if root is None:
-                return (1001, 0)
+                return 0
 
-            node, count = dfs(root.left)
-            if root.val == node: # 왼쪽자식이 루트값과 같을때
+            count = dfs(root.left)
+            if root.left and root.val == root.left.val: # 왼쪽자식이 루트값과 같을때
                 c += count + 1
                 next_c = count + 1
-            node, count = dfs(root.right)
-            if root.val == node:  # 오른쪽자식이 루트값과 같을때
+            count = dfs(root.right)
+            if root.right and root.val == root.right.val:  # 오른쪽자식이 루트값과 같을때
                 c += count + 1
                 next_c = max(next_c, count + 1) # 둘다 같으면 더 큰쪽
             result = max(result, c)
 
-            return (root.val, next_c )
+            return next_c
 
 
 
-        node, count = dfs(root)
-        return max(result, count) #마지막 루트값까지 max따져주기
+        dfs(root)
+        return result
+
+
+
+class Solution:
+    def longestUnivaluePath(self, root: Optional[TreeNode]) -> int:
+        result = 0
+
+        def dfs(root):
+            nonlocal result
+            if root is None:
+                return 0
+
+            left = dfs(root.left)
+            right = dfs(root.right)
+            if root.left and root.val == root.left.val: # 왼쪽자식이 루트값과 같을때
+                left += 1
+            else:  # 값이 다르다면 0으로 초기화
+                left = 0
+            if root.right and root.val == root.right.val:  # 오른쪽자식이 루트값과 같을때
+                right += 1
+            else:  # 값이 다르다면 0으로 초기화
+                right = 0
+
+
+            result = max(result, left+right)
+
+            return max(right, left)
+
+
+
+        dfs(root)
+        return result
 
 
