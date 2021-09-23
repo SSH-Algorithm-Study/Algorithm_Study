@@ -13,7 +13,7 @@ class Solution:
                 return 0
             left = maxheight(root.left)
             right = maxheight(root.right)
-            self.result = max(self.result, left + right)
+            self.result = max(Solution.result, left + right)
             return max(left, right) + 1
 
         maxheight(root)
