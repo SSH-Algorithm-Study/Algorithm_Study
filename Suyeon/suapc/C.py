@@ -21,7 +21,8 @@ def chess():
         j = 0
         while i+size <= N:
             while j+size <=N:
-                if dp[i][j][size-1] and dp[i+1][i][size-1] and dp[i]
+                if dp[i][j][size-1] and dp[i+1][i][size-1] and dp[i]:
+                    pass
             dp[i][j][size] = 1
 
 

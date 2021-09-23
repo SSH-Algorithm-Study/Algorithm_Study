@@ -12,7 +12,8 @@ class Solution:
                 return
             root = TreeNode()
             mid = (head+tail) // 2
-            root.val = nums[mid]
+            root.val = nums[mid]  # 중간값을 기준으로 루트노드를 잡는다
+
             root.left = dfs( head, mid-1)
             root.right = dfs( mid+1, tail)
 
