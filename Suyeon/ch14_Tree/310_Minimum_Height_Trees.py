@@ -98,7 +98,7 @@ class Solution:
                 node = info[leaf].pop()
                 info[node].remove(leaf)
 
-                if len(info[node]) == 1:
+                if len(info[node]) == 1:      # 리프소거마다 len체크
                     new_leave.append(node)
 
             leaves = new_leave
