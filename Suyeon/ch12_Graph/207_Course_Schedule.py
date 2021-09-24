@@ -15,14 +15,14 @@ class Solution:
         visit = [unvisited] * numCourses # 방문여부
 
         def dfs(i):
-            if visit[i] == processing:
+            if visit[i] == processing:  # 진행중인 노드
                 return False
 
-            if visit[i] == processed:
+            if visit[i] == processed:  # 이미 탐색을 맞힌 노드
                 return True
 
             visit[i] = processing
-            for child in pairs[i]:
+            for child in pairs[i]: # 이웃노드들 방문
                 if not dfs(child):
                     return False
 
@@ -31,17 +31,11 @@ class Solution:
 
 
 
-        for i in range(numCourses):
+        for i in range(numCourses):  #0 - n-1 노드 차례대로
             if not dfs(i):
                 return False
 
         return True
 
 
-
-    for i in range(numCourses):
-        if not dfs(i):
-            return False
-
-    return True
 
