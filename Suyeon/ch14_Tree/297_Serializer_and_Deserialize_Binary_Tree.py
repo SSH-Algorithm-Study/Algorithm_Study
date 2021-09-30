@@ -6,6 +6,7 @@ class TreeNode(object):
         self.left = None
         self.right = None
 
+
 class Codec:
 
     def serialize(self, root):
@@ -22,15 +23,14 @@ class Codec:
 
         while queue:
             node = queue.popleft()
-            if node:
-                result.append(node.val)
+            if node: # null이 아닌 경우
+                result.append(str(node.val))
                 queue.append(node.left)
                 queue.append(node.right)
-            else:
-                result.append(None)
+            else: # null인 경우
+                result.append('#')
 
-        return result
-
+        return ' '.join(result)  # 문자열로 변환
 
     def deserialize(self, data):
         """Decodes your encoded data to tree.
@@ -40,59 +40,26 @@ class Codec:
         """
 
         queue = collections.deque()  # 부모노드들을 넣어준다
+        data = data.split()  # 배열로 변환 
 
         if data:
-            root = TreeNode(data.pop(0))
+            root = TreeNode(int(data.pop(0)))
             queue.append(root)
+
+        else: #예외처리
+            return None
 
         while queue:
             node = queue.popleft()
-            if data and data.pop(0):
-                left = TreeNode(data.pop(0))
-                node.left = left
-                queue.append(left)
+            left = data.pop(0) # pop의 중복을 막기위해 변수에 할당
+            right = data.pop(0)
 
-            if data and data.pop(0):
-                right = TreeNode(data.pop(0))
-                node.right = right
-                queue.append(right)
+            if left != '#':
+                node.left = TreeNode(int(left))
+                queue.append(node.left)
+
+            if right != '#':
+                node.right = TreeNode(int(right))
+                queue.append(node.right)
 
         return root
-
-
-
-def deserialize(self, data):
-    """Decodes your encoded data to tree.
-
-    :type data: str
-    :rtype: TreeNode
-    """
-
-    queue = collections.deque()  # 부모노드들을 넣어준다
-    i = -1
-    length = len(data)
-
-    if data:
-        root = TreeNode(data[0])
-        queue.append(root)
-
-    while queue:
-        i += 1
-        node = queue.popleft()
-        if i*2+1 < length:
-            if data[i*2+1]:
-                left = TreeNode(data[i*2+1])
-                node.left = left
-                queue.append(left)
-            else:
-                node.left = None
-
-        if i * 2 + 2< length:
-            if data[i * 2 + 2]:
-                right = TreeNode(data[i * 2 + 2])
-                node.right = right
-                queue.append(right)
-            else:
-                node.right = None
-
-    return root
