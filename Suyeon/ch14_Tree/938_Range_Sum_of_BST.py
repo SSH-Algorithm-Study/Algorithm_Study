@@ -40,7 +40,6 @@ class Solution:
 
 class Solution:
     def rangeSumBST(self, root: Optional[TreeNode], low: int, high: int) -> int:
-        sum = 0
 
         def dfs(root):
 
@@ -64,3 +63,22 @@ class Solution:
 
 
         return dfs(root)
+
+
+class Solution:
+    def rangeSumBST(self, root: Optional[TreeNode], L: int, R: int) -> int:
+        stack, sum = [root], 0
+
+        while stack:
+            node = stack.pop()
+            if node:
+                if node.val < L:
+                    stack.append(node.right)
+                elif node.val > R:
+                    stack.append(node.left)
+                else:
+                    sum += node.val
+                    stack.append(node.left)
+                    stack.append(node.right)
+
+        return sum
