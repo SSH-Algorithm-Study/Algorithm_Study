@@ -1,5 +1,3 @@
-import collections
-
 class TreeNode:
     def __init__(self):
         self.children = {}  # 다음단어 : TreeNode()
