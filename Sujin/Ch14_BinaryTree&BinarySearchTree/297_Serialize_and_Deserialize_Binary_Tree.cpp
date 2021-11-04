@@ -9,9 +9,6 @@
  */
 class Codec {
 public:
-    queue<string> q;
-    string s;
-    
     // Encodes a tree to a single string.
     string serialize(TreeNode* root) {
         
