@@ -47,3 +47,36 @@ class Solution:
 
     def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
         return self.mergeSort(head)
+
+
+
+
+class Solution:
+    def merge(self, h1, h2):
+        if h1 and h2:
+            if h1.val > h2.val:
+                h1, h2 = h2, h1
+            h1.next = self.merge(h1.next, h2)
+
+        return h1 or h2
+
+    def mergeSort(self, first):
+
+        if first is None or first.next is None:
+            return first
+
+        slow = fast = bef = first
+
+        while fast and fast.next:
+            bef = slow
+            slow = slow.next
+            fast = fast.next.next
+
+        bef.next = None  # 분리
+
+        h1 = self.mergeSort(first)
+        h2 = self.mergeSort(slow)
+        return self.merge(h1, h2)
+
+    def sortList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        return self.mergeSort(head)
