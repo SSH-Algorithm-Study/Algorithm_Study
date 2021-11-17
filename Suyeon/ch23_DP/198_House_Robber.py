@@ -12,4 +12,3 @@ class Solution:
 
         return dp[len(nums) - 1]
 
-
