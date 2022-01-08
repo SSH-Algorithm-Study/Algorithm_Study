@@ -23,4 +23,4 @@ class Solution:
             if dict1[num] != 0:
                 result.append(num)
 
-        return result
+        return set(result)
