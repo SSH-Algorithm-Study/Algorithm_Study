@@ -1,3 +1,4 @@
+# 2중 BS 실패 : 기준잘못잡음
 class Solution:
     def searchMatrix(self, matrix, target: int) -> bool:
         m, n = len(matrix), len(matrix[0])
@@ -35,5 +36,37 @@ class Solution:
 
 
 
+class Solution:
+    def searchMatrix(self, matrix, target: int) -> bool:
+        row, col = 0, len(matrix[0]) - 1
+
+        while row < len(matrix) and col > -1:
+            if matrix[row][col] == target :
+                return True
+            elif matrix[row][col] > target:
+                col = col - 1
+            else:
+                row = row + 1
+
+        return False
+
+
+class Solution:
+    def searchMatrix(self, matrix, target: int) -> bool:
+        rows = len(matrix)
+
+        for row in range(rows):
+            first, last = 0, len(matrix[0])-1
+            while first <= last:
+                mid = first + (last - first) // 2
+
+                if matrix[row][mid] == target:
+                    return True
+                elif matrix[row][mid] > target:
+                    last = mid - 1
+                else:
+                    first = mid + 1
+
+        return False
 
 
