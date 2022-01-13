@@ -53,3 +53,34 @@ class Solution:
                     left = mid + 1
 
         return -1
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums)-1
+
+        # 최소값 인덱스 찾기
+        while left < right:
+            mid = left + (right - left) // 2
+
+            if nums[mid] > nums[right]: # pivot값 mid, right 사이에 존재
+                left = mid + 1
+            else:
+                right = mid
+
+        pivot = left
+
+        # target 찾기
+        left, right = 0, len(nums)-1
+
+        while left <= right:
+            mid = left + (right-left)//2
+            mid_pivot = (mid+pivot) % len(nums) # %연산으로 인덱스 범위 넘지 않게
+
+            if nums[mid_pivot] < target:
+                left = mid + 1
+            elif nums[mid_pivot] > target:
+                right = mid - 1
+            else:
+                return mid_pivot
+
+        return -1
