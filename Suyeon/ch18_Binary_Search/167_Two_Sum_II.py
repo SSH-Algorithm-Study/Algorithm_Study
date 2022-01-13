@@ -17,7 +17,7 @@ class Solution:
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
         for k, v in enumerate(numbers):
-            left, right = k+1, len(numbers)-1 # k보다 오른쪽에서 탐색 앞쪽은 이미 탐색했으므로 
+            left, right = k+1, len(numbers)-1 # k보다 오른쪽에서 탐색 앞쪽은 이미 탐색했으므로
             target = target - v
 
             while left <= right:

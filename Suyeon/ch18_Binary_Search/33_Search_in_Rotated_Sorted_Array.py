@@ -62,7 +62,7 @@ class Solution:
         while left < right:
             mid = left + (right - left) // 2
 
-            if nums[mid] > nums[right]:
+            if nums[mid] > nums[right]: # pivot값 mid, right 사이에 존재
                 left = mid + 1
             else:
                 right = mid
@@ -74,7 +74,7 @@ class Solution:
 
         while left <= right:
             mid = left + (right-left)//2
-            mid_pivot = (mid+pivot) % len(nums)
+            mid_pivot = (mid+pivot) % len(nums) # %연산으로 인덱스 범위 넘지 않게
 
             if nums[mid_pivot] < target:
                 left = mid + 1

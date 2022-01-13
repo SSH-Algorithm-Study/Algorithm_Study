@@ -25,6 +25,7 @@ class Solution:
 
         return result
 
+# 이진탐색
 class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         result = set()
@@ -47,6 +48,7 @@ class Solution:
         return result
 
 
+# 투포인트
 class Solution:
     def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
         result = set()
