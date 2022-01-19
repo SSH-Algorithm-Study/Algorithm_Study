@@ -4,7 +4,6 @@ class Solution:
         return sum(map(int,(bin(x^y)[2:])))
 
 
-    
 class Solution:
     def hammingDistance(self, x: int, y: int) -> int:
 
