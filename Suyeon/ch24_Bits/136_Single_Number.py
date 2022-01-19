@@ -7,9 +7,9 @@ class Solution:
         for num in nums:
             pair[num] += 1
 
-        for num in nums:
-            if pair[num] == 1:
-                return num
+        for key in pair:
+            if pair[key] == 1:
+                return key
 
 class Solution:
     def singleNumber(self, nums) -> int:
