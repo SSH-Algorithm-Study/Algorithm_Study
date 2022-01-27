@@ -1,7 +1,7 @@
 import collections
 
 
-## 시도 
+## 시도
 class Solution1:
     def characterReplacement(self, s: str, k: int) -> int:
 
