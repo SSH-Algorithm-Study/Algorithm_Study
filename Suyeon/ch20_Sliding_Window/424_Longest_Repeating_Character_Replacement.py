@@ -63,8 +63,10 @@ class Solution2:
 
             diff = right - left + 1 - max(freqs.values()) # 최대빈도와 다른 문자수
             if diff > k: # 가능성 아예 없는 경우
+                freqs[s[left]] -= 1
                 left += 1
                 right += 1
+
             else: # 가능성 있는 경우
                 right += 1
                 result = right - left  # right 옮긴곳이 알파벳 모르기 때문에 하나 적게
