@@ -19,3 +19,8 @@ class Solution:
             if freqs[key] > len(nums)//2:
                 return key
 
+
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        return sorted(nums)[len(nums) // 2]
