@@ -1,6 +1,4 @@
-global count
 count = 0
-
 msg = []
 
 def hanoi(num,start,mid,finish):
@@ -16,6 +14,7 @@ def hanoi(num,start,mid,finish):
 
 n = eval(input())
 hanoi(n,1,2,3)
+
 print(count)
 for m in msg:
     print(m)

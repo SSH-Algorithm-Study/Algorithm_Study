@@ -3,5 +3,6 @@ def facto(n):
         return 1
     else:
         return n * facto(n-1)
+
 n = eval(input())
 print(facto(n))
