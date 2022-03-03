@@ -23,7 +23,7 @@ class Solution:
             if dict1[num] != 0:
                 result.append(num)
 
-        return result
+        return set(result)
 
 # 이진탐색
 class Solution:
