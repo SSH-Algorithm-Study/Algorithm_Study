@@ -1,3 +1,5 @@
+import itertools
+
 answer = input().split()
 nums = input().split()
 
@@ -26,6 +28,15 @@ def answer(N,M):
     return max_value
 
 print(answer(N,M))
+
+
+
+def answer(N,M):
+    global max_value
+
+    for combi in itertools.permutations(N,3):
+        if sum(combi) <= M:
+            max_value = max(max_value,sum(combi))
 
 
 
