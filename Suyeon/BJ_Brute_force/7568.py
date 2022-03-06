@@ -2,12 +2,14 @@ N = int(input())
 students= []
 bigger = {}
 answer = [0] * N
+# answer = [0 for _ in range(N)]
 
 for _ in range(N):
-    students.append(input().split())
+    students.append(list(map(int,input().split())))
 
-for i in range(N):
+for i in range(N): #리스트 내포로 가능
     bigger[i] = 0
+
 
 for i in range(N-1):
     for j in range(i+1,N):

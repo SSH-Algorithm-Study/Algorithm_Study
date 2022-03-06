@@ -1,28 +1,42 @@
+import itertools
+
 answer = input().split()
 nums = input().split()
 
 N = int(answer[0])
 M = int(answer[1])
-numbers = []
+nums = list(map(int, nums))
+nums.sort() # 정렬
 
+max_value = 0
 def answer(N,M):
+    global max_value
     for i in range(N-2):
-        max_value = 0
         j = i+1
         k = len(nums)-1
-        sum = nums[i] + nums[j] + nums[k]
+
         while j < k:
+            sum = nums[i] + nums[j] + nums[k]
             if sum < M:
                 max_value = max(sum,max_value) # 갱신
-                sum = nums[i] + nums[++j] + nums[k]
+                j += 1
             elif sum > M:
-                sum = nums[i] + nums[j] + nums[++k]
+                k -= 1
             else:
                 return M
 
-        if sum > M :
-            sum = nums[i]
+    return max_value
 
+print(answer(N,M))
+
+
+
+def answer(N,M):
+    global max_value
+
+    for combi in itertools.permutations(N,3):
+        if sum(combi) <= M:
+            max_value = max(max_value,sum(combi))
 
 
 

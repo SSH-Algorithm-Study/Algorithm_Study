@@ -1,5 +1,3 @@
-import math
-
 def answer(N):
     for i in range(1,N):
         sum = i

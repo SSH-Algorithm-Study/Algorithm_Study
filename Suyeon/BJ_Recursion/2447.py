@@ -1,21 +1,20 @@
 def dot(n):
-    if n == 0:
-        for _ in range(n):
-            print("*", end="")
-        print("\n")
-        for _ in range(n):
-            print("*", end="")
-            print(" *")
-        print("\n")
-        for _ in range(n):
-            print("*", end="")
-        print("\n")
-        return
+    if n == 1:
+        return ["*"]
 
-    else:
-        return dot(n//3)
+    stars = dot(n//3)
 
+    L = []
+    for star in stars:
+        L.append(star*3)
+    for star in stars:
+        L.append(star+' '*(n//3)+star)
+    for star in stars:
+        L.append(star*3)
 
-dot(9)
+    return L
 
+n = int(input())
+#print(dot(n))
+print('\n'.join(dot(n)))
 
