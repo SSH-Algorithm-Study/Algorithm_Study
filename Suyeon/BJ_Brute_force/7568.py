@@ -9,6 +9,8 @@ for _ in range(N):
 for i in range(N): #리스트 내포로 가능
     bigger[i] = 0
 
+# bigger = [0 for _ in range(N)]
+
 for i in range(N-1):
     for j in range(i+1,N):
         if students[i][1] > students[j][1] and students[i][0] > students[j][0] :
