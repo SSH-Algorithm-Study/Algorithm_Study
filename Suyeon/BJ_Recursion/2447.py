@@ -15,6 +15,6 @@ def dot(n):
     return L
 
 n = int(input())
-#print(dot(n))
+print(dot(n))
 print('\n'.join(dot(n)))
 
