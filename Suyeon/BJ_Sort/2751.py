@@ -1,3 +1,4 @@
+############# heap sort
 import sys
 import heapq
 
@@ -10,3 +11,16 @@ for _ in range(N):
 for _ in range(len(pq)):
     print(heapq.heappop(pq))
 
+
+
+########### sort함수
+
+N = int(sys.stdin.readline())
+nums = []
+
+for _ in range(N):
+    nums.append(int(sys.stdin.readline()))
+
+nums.sort()
+
+sys.stdout.write('\n'.join(map(str,nums)))
