@@ -1,15 +1,15 @@
 ######## 정렬함수
 
 N = int(input())
-# nums = []
-#
-# for _ in range(N):
-#     nums.append(int(input()))
-#
-# nums.sort()
-#
-# for num in nums:
-#     print(num)
+nums = []
+
+for _ in range(N):
+    nums.append(int(input()))
+
+nums.sort()
+
+for num in nums:
+    print(num)
 
 ############## 삽입정렬
 
