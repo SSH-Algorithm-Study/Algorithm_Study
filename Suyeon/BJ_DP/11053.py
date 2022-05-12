@@ -9,5 +9,4 @@ for i in range(1,N):
         if nums[j] < nums[i]:
             LIS[i] = max(LIS[i], LIS[j]+1)
         j += 1
-print(LIS)
-print(LIS[N-1])
+print(max(LIS))
