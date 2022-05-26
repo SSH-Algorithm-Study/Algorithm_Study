@@ -1,35 +1,36 @@
 import sys
-import heapq
 
-N, maxWeight = map(int,sys.stdin.readline().split())
-weights = []
-values = []
-pq = []
+N, limitWeight = map(int,sys.stdin.readline().split())
+items = []
+dp = [[-1] * (limitWeight + 1) for i in range(N)]
 
-maxValue = -sys.maxsize
+def board():
+    for d in dp:
+        print(d)
+    print("-----------------------")
 
 ### 데이터 넣기 ###
 for i in range(N):
     w, v = map(int, sys.stdin.readline().split())
-    weights.append(w)
-    values.append(v)
+    items.append([w,v])
 
-heapq.heappush(pq, [0, 0, 0])
+def knapsack(i,j):
+    if i < 0 or j < 0:
+        return 0
 
-while pq:
-    value, weight, level = heapq.heappop(pq)
-    value = -value
+    weight, value = items[i]
+    if dp[i][j] == -1: # 값 업다면
+        if j-weight < 0: # i추가 불가능
+            dp[i][j] = knapsack(i-1,j)
+        else:  # i추가 가능
+            dp[i][j] = max(knapsack(i-1, j-weight) + value, knapsack(i-1,j))
 
-    if level < N:
-        if weight <= maxWeight and value + sum(values[level:]) > maxValue:
-            maxValue = max(maxValue, value)
-            heapq.heappush(pq, [-value-values[level], weight+weights[level], level+1])
-            heapq.heappush(pq, [-value, weight, level+1])
-    else:
-        if weight <= maxWeight:
-            maxValue = max(maxValue, value)
 
-print(maxValue)
+    return dp[i][j]
 
+
+knapsack(N-1,limitWeight)
+
+print(dp[N-1][limitWeight])
 
 
