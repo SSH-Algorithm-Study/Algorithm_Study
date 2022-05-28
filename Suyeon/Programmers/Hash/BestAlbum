@@ -1,0 +1,22 @@
+# 장르수가 높은 것 먼저
+# 해당 장르에서 플레이수 제이 높은 노래 두개 출력
+import collections
+
+
+def solution(genres, plays):
+    playByGenre = collections.defaultdict(int)
+    musicByGenre = collections.defaultdict(list)
+    answer = []
+
+    for i in range(len(genres)):
+        playByGenre[genres[i]] += plays[i]
+        musicByGenre[genres[i]].append([plays[i], i])
+
+    playByGenre = sorted(playByGenre.items(), key=lambda x: -x[1])
+
+    for genre, play in playByGenre:
+        sorted_music = sorted(musicByGenre[genre], key=lambda x: (-x[0], x[1]))
+        answer.append(sorted_music[0][1])
+        answer.append(sorted_music[1][1])
+
+    return answer
